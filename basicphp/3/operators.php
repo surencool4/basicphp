@@ -2,7 +2,7 @@
 
 	//Groups of operators
 
-	//Arithmetic operators
+	//Type s Arithmetic operators
 
 	//Addition
 	echo $addition = 20 + 5;
