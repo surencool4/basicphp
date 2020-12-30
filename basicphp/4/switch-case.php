@@ -1,16 +1,21 @@
 <?php
-$favcolor = "red";
 
-switch ($favcolor) {
-  case "red":
-    echo "Your favorite color is red!";
+//Switchcase
+
+$country = "nepal";
+
+switch ($country) {
+  case 'india':
+    echo "This is not your country";
     break;
-  case "blue":
-    echo "Your favorite color is blue!";
+  case 'nepal';
+    echo "Your country is nepal";
     break;
-  case "green":
-    echo "Your favorite color is green!";
+  case 'london';
+    echo "This is not your country";
     break;
+  
   default:
-    echo "Your favorite color is neither red, blue, nor green!";
+    echo "Try again";
+    break;
 }
