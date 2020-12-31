@@ -19,6 +19,16 @@ if (isset($_POST['user_register'])) {
 
 
 <form method="POST">
+    <?php
+    //file must have this file
+    require('form.html');
+
+    //File not to be required
+    include("component.htnl");
+
+    //break
+    require_once("test.html");
+    ?>
     <input name="name" type="text">
     <input name="address" type="text">
     <input name="contact" type="text">
