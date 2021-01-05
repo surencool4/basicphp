@@ -3,7 +3,8 @@
 
 	$sql = "SELECT * FROM `users`";
 	$users = $Connect->runSql($sql);
-	$user_count = $Connect->count($users);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,17 +16,32 @@
 </head>
 <body>
 	<h1>Users</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Email</td>
+				<td>Address</td>
+				<td>Contact</td>
+			</tr>
+		</thead>
+		<tbody>
+			
+				<?php 
+					foreach ($users as $user) {
+						echo "<tr>";
+						echo "<td>". $user['name']. "</td>";
+						echo "<td>" .  $user['email'] . "</td>";
+						echo "<td>". $user['address']. "</td>";
+						echo "<td>". $user['contact']. "</td>";
+						echo "</tr>";
+					}
+				
+				?>
+			
+		</tbody>
+	</table>
 	
-	<?php 
-		foreach ($users as $user) {
-			echo $user['name']. "<br>";
-			echo $user['email'].'<br>';
-			echo $user['address'].'<br>';
-			echo $user['contact'].'<br>';
-			echo $user['status'].'<br>';
-		}
-	
-	?>
 	
 </body>
 </html>

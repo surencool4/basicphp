@@ -7,30 +7,34 @@
  	public $password;
  	public $db;
 
+ 	//Autoload 
  	public function __construct()
  	{
+ 		//Self class-> public function call ($this->)
  		$this->host = "localhost";
  		$this->username = 'root';
- 		$this->password = 'passwords';
+ 		$this->password = 'password';
  		$this->db = 'test';
 
- 		$this->connect = mysqli_connect($this->host,$this->username,$this->password,$this->db) or die("Connection failed: " . mysqli_connect_error()); 
+ 		//Syntax
+ 		//mysqli_connect(host,username,pwd,db);
+ 		//for connect check
+ 		//or die
+ 		$this->connect = mysqli_connect($this->host,$this->username,$this->password,$this->db) or die("Connection failed: "); 
  	}
+
+
+
 
  	public function runSql($sql)
  	{
  		return mysqli_query($this->connect, $sql);
  	}
 
- 	public function count($query)
- 	{
- 		return mysqli_num_rows($query);
- 	}
-
- 	function clean($data)
- 	{
-		return mysqli_real_escape_string($this->connect, $data);
-	}
+ 
  }
 
  $Connect = new Connect;
+
+
+
