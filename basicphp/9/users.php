@@ -10,7 +10,7 @@
     
     public function index()
   	{
-  		$sql  = "SELECT * FROM `users` order by id desc";
+  		$sql  = "SELECT * FROM `users` ";
   		return $this->db->runSql($sql);
   	}
 

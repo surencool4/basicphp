@@ -24,9 +24,9 @@
  		return mysqli_query($this->connect, $sql);
  	}
 
- 	public function fetch($query){
- 		return mysqli_fetch_array($query, MYSQLI_ASSOC);
- 	}
+ 	// public function fetch($query){
+ 	// 	return mysqli_fetch_array($query, MYSQLI_ASSOC);
+ 	// }
 
  
  }

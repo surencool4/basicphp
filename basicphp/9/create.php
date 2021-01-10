@@ -12,12 +12,10 @@
 				$error .= "Email must be filled !!! <br>";
 			}
 
-			if(empty($address)){
-				$error .= "Address must be filled !!! <br>";
-			}
 
 			if(empty($error)):
 				$result = $Users->add($form_submit_name,$email,$address,$contact,'1');
+				
 				$_SESSION["success"] = "User Created Successfully !!!";
 				header("LOCATION: ./");
 			else:
