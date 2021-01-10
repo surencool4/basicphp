@@ -1,10 +1,7 @@
 <?php 
-	include('connect.php');
-
-	$sql = "SELECT * FROM `users`";
-	$users = $Connect->runSql($sql);
-
-
+	session_start();
+	require_once('connect.php');
+	require_once('users.php');
 ?>
 
 <!DOCTYPE html>
@@ -12,36 +9,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>CMS</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
-	<h1>Users</h1>
-	<table>
-		<thead>
-			<tr>
-				<td>Name</td>
-				<td>Email</td>
-				<td>Address</td>
-				<td>Contact</td>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="container p-4">
+
+		<?php 
+			include('success.php');
 			
-				<?php 
-					foreach ($users as $user) {
-						echo "<tr>";
-						echo "<td>". $user['name']. "</td>";
-						echo "<td>" .  $user['email'] . "</td>";
-						echo "<td>". $user['address']. "</td>";
-						echo "<td>". $user['contact']. "</td>";
-						echo "</tr>";
-					}
-				
-				?>
-			
-		</tbody>
-	</table>
-	
-	
+			$fileName = isset($_GET['file']) ? $_GET['file'] : '';
+
+			if(empty($fileName)){
+				include('home.php');
+			}
+			else{
+				include("$fileName.php");
+			}
+		?>
+	</div>
 </body>
 </html>

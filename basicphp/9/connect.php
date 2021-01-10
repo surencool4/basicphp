@@ -16,19 +16,16 @@
  		$this->password = 'password';
  		$this->db = 'test';
 
- 		//Syntax
- 		//mysqli_connect(host,username,pwd,db);
- 		//for connect check
- 		//or die
  		$this->connect = mysqli_connect($this->host,$this->username,$this->password,$this->db) or die("Connection failed: "); 
  	}
-
-
-
 
  	public function runSql($sql)
  	{
  		return mysqli_query($this->connect, $sql);
+ 	}
+
+ 	public function fetch($query){
+ 		return mysqli_fetch_array($query, MYSQLI_ASSOC);
  	}
 
  
