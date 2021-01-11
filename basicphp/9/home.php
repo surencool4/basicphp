@@ -2,6 +2,7 @@
 	<h2>User(s) <span class="small float-right"><a class="btn btn-primary" href="?file=create">Create User</a></span></h2>
 	<thead>
 		<tr>
+			<td>SN</td>
 			<td>Name</td>
 			<td>Email</td>
 			<td>Address</td>
@@ -12,8 +13,10 @@
 	<tbody>
 		
 	<?php 
+	$i = 0;
 		foreach ($Users->index() as $user) {
 			echo "<tr>";
+			echo "<td>". ++$i. "</td>";
 			echo "<td>". $user['name']. "</td>";
 			echo "<td>" .  $user['email'] . "</td>";
 			echo "<td>". $user['address']. "</td>";

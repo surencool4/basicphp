@@ -1,6 +1,18 @@
 <?php 
-		$user = $Users->edit($_GET['id']);
+//get database datas
+//connect database
+//Query
+//fetch (Array datas will get by foreach loop)
+
+
+		$id = $_GET['id'];
+		$user = $Users->edit($id);
+
+		// $user = mysqli_fetch_array($user, MYSQLI_ASSOC);
 		$user = $Connect->fetch($user);
+
+		// echo $user['name'];
+		// echo $user['email'];
 		
 		if(isset($_POST['updateUser'])){
 
@@ -15,12 +27,10 @@
 				$error .= "Email must be filled !!! <br>";
 			}
 
-			if(empty($address)){
-				$error .= "Address must be filled !!! <br>";
-			}
 
 			if(empty($error)):
-				$result = $Users->update($_GET['id'],$name,$email,$address,$contact,'1');
+				// public function update($id,$name,$email,$address,$contact,$status){
+				$result = $Users->update($id,$name,$email,$address,$contact,'1');
 				$_SESSION["success"] = "User Updated Successfully !!!";
 				header("LOCATION: ./");
 			else:
@@ -35,7 +45,7 @@
 			
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" name="name" value="<?=$user['name']?>" class="form-control">
+				<input type="text" name="name" value="<?php echo $user['name']?>" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -51,6 +61,11 @@
 			<div class="form-group">
 				<label for="contact">Contact</label>
 				<input type="text" name="contact" value="<?=$user['contact']?>"  class="form-control">
+			</div>
+
+			<div>
+				<label for="">Status</label>
+				<input type="checkbox" <?php echo ($user['status'] == 1) ? 'checked' : '' ?>>
 			</div>
 
 

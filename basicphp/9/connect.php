@@ -10,7 +10,6 @@
  	//Autoload 
  	public function __construct()
  	{
- 		//Self class-> public function call ($this->)
  		$this->host = "localhost";
  		$this->username = 'root';
  		$this->password = 'password';
@@ -24,9 +23,24 @@
  		return mysqli_query($this->connect, $sql);
  	}
 
- 	// public function fetch($query){
- 	// 	return mysqli_fetch_array($query, MYSQLI_ASSOC);
- 	// }
+ 	public function retrieveFileFromUrl($filename)
+ 	{
+ 		try {
+	 		if(empty($filename)):
+	 			$inc = "home.php";
+	 		else:
+	 			$inc = "$filename.php";
+	 		endif;
+	 	} catch (Exception $e) {
+ 			$inc = "home.php";
+ 		}
+ 		
+ 		return $inc;
+ 	}
+
+ 	public function fetch($query){
+ 		return mysqli_fetch_array($query, MYSQLI_ASSOC);
+ 	}
 
  
  }

@@ -1,6 +1,11 @@
 <?php 
 
-	if(isset($_SESSION['success'])):
+//warning
+//error
+//success
+
+
+	if(isset($_SESSION['success'])): 
 		
 //sweet alert
 		?>
@@ -10,5 +15,4 @@
 		<?php
 	endif;
 
-	// destroy the session
-	session_unset();
+	

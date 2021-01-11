@@ -18,15 +18,10 @@
 
 		<?php 
 			include('success.php');
-			
-			$fileName = isset($_GET['file']) ? $_GET['file'] : '';
-
-			if(empty($fileName)){
-				include('home.php');
-			}
-			else{
-				include("$fileName.php");
-			}
+			require('primary.php');
+			$filename = (isset($_GET['file'])) ? $_GET['file'] : '';
+			$file = $Connect->retrieveFileFromUrl($filename);
+			include($file);
 		?>
 	</div>
 </body>

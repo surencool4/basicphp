@@ -1,4 +1,9 @@
 <?php 
+// echo $_GET['file'];
+// echo "<hr>";
+// echo $_GET['id'];
+// echo "<hr>";
+// echo $_GET['cat'];
 		if(isset($_POST['createUser'])){
 
 			$form_submit_name = $_POST['name'];
