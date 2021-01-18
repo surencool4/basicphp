@@ -16,7 +16,7 @@
       //Default Asc
   		 $sql  = "SELECT * FROM `users` ORDER BY id DESC";
 
-  		return $this->db->runSql($sql);
+  		  return $this->db->runSql($sql);
   	}
 
   	//Insert data

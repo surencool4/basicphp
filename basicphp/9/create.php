@@ -40,12 +40,14 @@
 
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="text" name="email"  class="form-control">
+				<input type="text" name="email"  class="form-control" onkeyup="checkEmail(this.value)">
 			</div>
+
+				<p><span id="found_email"></span></p>
 
 			<div class="form-group">
 				<label for="address">Address</label>
-				<input type="text" name="address" class="form-control">
+				<input type="text" name="address" class="form-control" >
 			</div>
 
 			<div class="form-group">
@@ -60,4 +62,31 @@
 
 
 	</form>
+
+
+
+
+<script>
+		function checkEmail(str) {
+		  if (str.length == 0) {
+		    document.getElementById("found_email").innerHTML = "";
+		    return;
+		  } 
+		  else {
+		    var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = function() {
+		      if (this.readyState == 4 && this.status == 200) {
+		        document.getElementById("found_email").innerHTML = this.responseText;
+		      }
+		    };
+		    xmlhttp.open("GET", "ajaxemailchecker.php?q=" + str, true);
+		    xmlhttp.send();
+		  }
+		}
+
+
+		// function cname(str){
+		// 	alert(str);
+		// }
+</script>
 	
