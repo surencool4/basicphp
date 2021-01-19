@@ -2,9 +2,12 @@
 
   class Users 
   {
+    use usersTrait;
 
     //Truncate tablename
     //Delete all datas and staring with 1
+
+    //Only CRUD METHOD
 
     public function __construct(){
       global $Connect;
@@ -20,10 +23,17 @@
   	}
 
   	//Insert data
-    public function add($name,$email,$address,$contact,$status)
+    public function add($name,$email,$password,$address,$contact,$status)
   	{
+      $name = $this->db->clean($name);
+      $email = $this->db->clean($email);
+      $password = $this->db->clean($password);
+      $password = md5($password);
+      $address = $this->db->clean($address);
+      $contact = $this->db->clean($contact);
+      $status = $this->db->clean($status);
 
-  		$sql = "INSERT INTO `users` (`name`, `email`, `address`, `contact`, `status`) VALUES ('$name', '$email', '$address','$contact', $status)";
+  		$sql = "INSERT INTO `users` (`name`, `email`,`password`, `address`, `contact`, `status`) VALUES ('$name', '$email', '$password', '$address','$contact', $status)";
 
   		return $this->db->runSql($sql);
   	}
@@ -55,6 +65,7 @@
       $sql = "DELETE FROM `users` WHERE id = $id";
       return $this->db->runSql($sql);
     }
+
 
   }
 

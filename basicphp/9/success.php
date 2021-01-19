@@ -5,12 +5,15 @@
 //success
 
 
-	if(isset($_SESSION['success'])): 
+	if(isset($_GET['success'])): 
 		
-//sweet alert
 		?>
 			<div class="alert alert-success">
-				<?php echo $_SESSION['success']; ?>
+				<?php 
+					$success =  $_GET['success']; 
+					$success = str_replace('-', ' ', $success);
+					echo $success = ucwords($success);
+				?>
 			</div>
 		<?php
 	endif;

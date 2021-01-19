@@ -42,6 +42,16 @@
  		return mysqli_fetch_array($query, MYSQLI_ASSOC);
  	}
 
+ 	public function countRows($sql)
+ 	{
+ 		return mysqli_num_rows($sql);
+ 	}
+
+	//sql injection
+	public function clean($data)
+	{
+		return mysqli_real_escape_string($this->connect,$data);
+	}
  
  }
 

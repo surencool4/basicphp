@@ -1,7 +1,9 @@
 <?php 
 	session_start();
 	require_once('connect.php');
+	require_once('usersTrait.php');
 	require_once('users.php');
+
 ?>
 
 <!DOCTYPE html>
