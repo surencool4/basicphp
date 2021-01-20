@@ -23,17 +23,18 @@
   	}
 
   	//Insert data
-    public function add($name,$email,$password,$address,$contact,$status)
+    public function add($name,$email,$avatar,$password,$address,$contact,$status)
   	{
       $name = $this->db->clean($name);
       $email = $this->db->clean($email);
+      $avatar = $this->db->clean($avatar);
       $password = $this->db->clean($password);
       $password = md5($password);
       $address = $this->db->clean($address);
       $contact = $this->db->clean($contact);
       $status = $this->db->clean($status);
 
-  		$sql = "INSERT INTO `users` (`name`, `email`,`password`, `address`, `contact`, `status`) VALUES ('$name', '$email', '$password', '$address','$contact', $status)";
+  		$sql = "INSERT INTO `users` (`name`, `email`,`avatar`, `password`, `address`, `contact`, `status`) VALUES ('$name', '$email', '$avatar' , '$password', '$address','$contact', $status)";
 
   		return $this->db->runSql($sql);
   	}

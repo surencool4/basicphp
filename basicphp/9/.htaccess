@@ -1,0 +1,9 @@
+RewriteEngine On
+
+
+RewriteBase /basicphp/9
+
+
+RewriteRule ^file/([\s\S]*)$ index.php?file=$1 [L]
+
+RewriteRule ^([A-Za-z0-9-]+)/app/([A-Za-z0-9-]+)$ index.php?sapp=$1&app=$2 [L]

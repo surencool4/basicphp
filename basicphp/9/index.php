@@ -3,6 +3,12 @@
 	require_once('connect.php');
 	require_once('usersTrait.php');
 	require_once('users.php');
+	require_once('myFunction.php');
+	require_once('validate.php');
+
+	// foreach ($myFunction->test() as $item) {
+	// 	echo $item['name'];
+	// }
 
 ?>
 

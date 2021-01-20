@@ -1,17 +1,27 @@
 <?php 
 	if(isset($_POST['createUser'])){
 
-		$form_submit_name = $_POST['name'];
+		$name = $_POST['name'];
 		$email = $_POST['email'];
 		$address = $_POST['address'];
 		$contact = $_POST['contact'];
 		$password = $_POST['password'];
+		$confirm_password = $_POST['confirm_password'];
+		$avatar = $_POST['avatar'];
 
-		$error = '';
+		$error = NULL;
 
-		if(empty($email)){
-			$error .= "Email must be filled !!! <br>";
-		}
+		$error.= $Validate->isEmpty($name, "Name");
+		$error.= $Validate->isEmpty($email, "Email");
+		$error.= $Validate->email($email);
+		$error.= $Validate->isEmpty($address, "Address");
+		$error.= $Validate->isEmpty($contact, "Contact");
+		// $error.= $Validate->int($contact, "Contact");
+		// $error .= $Validate->charRange($contact,9,10,"Contact");
+		$error.= $Validate->confirm($password, $confirm_password, "Password");
+		$error.= $Validate->imageUploadValidate($avatar);
+
+		// $error.= $Validate->email($email, "Email");
 
 		//Error validations
 		$checkEmail = $Users->find_email_from_db($email);
@@ -22,7 +32,7 @@
 
 
 		if(empty($error)):
-			$result = $Users->add($form_submit_name,$email,$password,$address,$contact,'1');
+			$result = $Users->add($name,$email,$avatar,$password,$address,$contact,'1');
 			
 			header("LOCATION: index.php?success=user-created-successfully");
 		else:
@@ -32,11 +42,16 @@
 ?>
 	
 	<h2><a href="./">Users</a></h2>
-	<form method="post" class="">
+	<form method="post" class="" enctype="multipart/form-data">
 			
 			<div class="form-group">
 				<label for="name">Name</label>
 				<input type="text" name="name" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="name">Avatar</label>
+				<input type="file" name="avatar" class="form-control">
 			</div>
 
 			<div class="form-group">
@@ -52,13 +67,18 @@
 			</div>
 
 			<div class="form-group">
+				<label for="address">Confirm Password</label>
+				<input type="password" name="confirm_password" class="form-control" >
+			</div>
+
+			<div class="form-group">
 				<label for="address">Address</label>
 				<input type="text" name="address" class="form-control" >
 			</div>
 
 			<div class="form-group">
 				<label for="contact">Contact</label>
-				<input type="text" name="contact"  class="form-control">
+				<input type="tel" name="contact"  class="form-control">
 			</div>
 
 			<div>
