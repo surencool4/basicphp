@@ -47,12 +47,11 @@
     }
 
     //Update data
-    public function update($id,$name,$email,$address,$contact,$status){
+    public function update($id,$name,$address,$contact,$status){
        $sql = "UPDATE `users` 
                           SET 
                           -- name => value
                           `name`='$name',
-                          `email`='$email',
                           `address`='$address',
                           `contact`='$contact',
                           `status`= $status 

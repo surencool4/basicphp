@@ -14,23 +14,19 @@
 		// echo $user['name'];
 		// echo $user['email'];
 		
-		if(isset($_POST['updateUser'])){
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			$name = $_POST['name'];
-			$email = $_POST['email'];
 			$address = $_POST['address'];
 			$contact = $_POST['contact'];
 
 			$error = '';
 
-			if(empty($email)){
-				$error .= "Email must be filled !!! <br>";
-			}
-
 
 			if(empty($error)):
 				// public function update($id,$name,$email,$address,$contact,$status){
-				$result = $Users->update($id,$name,$email,$address,$contact,'1');
+
+				$result = $Users->update($id,$name,$address,$contact,'1');
 				$_SESSION["success"] = "User Updated Successfully !!!";
 				header("LOCATION: ./");
 			else:
@@ -41,38 +37,5 @@
 	 ?>
 	
 	<h2><a href="./">Users</a></h2>
-	<form method="post" class="">
-			
-			<div class="form-group">
-				<label for="name">Name</label>
-				<input type="text" name="name" value="<?php echo $user['name']?>" class="form-control">
-			</div>
-
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="text" name="email" value="<?=$user['email']?>"  class="form-control">
-			</div>
-
-			<div class="form-group">
-				<label for="address">Address</label>
-				<input type="text" name="address" value="<?=$user['address']?>" class="form-control">
-			</div>
-
-			<div class="form-group">
-				<label for="contact">Contact</label>
-				<input type="text" name="contact" value="<?=$user['contact']?>"  class="form-control">
-			</div>
-
-			<div>
-				<label for="">Status</label>
-				<input type="checkbox" <?php echo ($user['status'] == 1) ? 'checked' : '' ?>>
-			</div>
-
-
-			<div>
-				<input type="submit" class="btn btn-primary float-right" value="Update User" name="updateUser">
-			</div>
-
-
-	</form>
+	<?php include('users/form.php'); ?>
 	

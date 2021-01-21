@@ -60,27 +60,34 @@ class Validate
 	}
 
 
-	public  function imageUploadValidate($name){
-			$ext=pathinfo($_FILES["$name"]['name'], PATHINFO_EXTENSION);
-			$ext=strtolower($ext);
-			$size=$_FILES["$name"]['size'];// bytes// 1 MB = 1000000 bytes
-			//1mb = 1024
-			//1gb = 1024mb
+	public function imageUploadValidate($name,$dir,$file_size){
+			$path = $dir. "/". basename($_FILES[$name]['name']);
+			$ext = strtolower(pathinfo($path,PATHINFO_EXTENSION));
+			$size=$_FILES[$name]['size'];
 			$allowed=array('jpg', 'jpeg', 'gif', 'png', 'svg');
-			$error = null;
-			if(!empty($ext)):
+			$error = NULL;
+			$file_name = NULL;
+
+			if(!empty($ext)){
 				if(!in_array($ext, $allowed)):
 					$error="Photo not supported !!!";		
-				elseif($size>1024):
-					$error="File size should be less then 1mb";
+				elseif($size>$file_size):
+					//1mb = 1000000byte
+					$file_size_mb =  $file_size/1000000;
+					$error="File size should be less then $file_size MB";
 				endif;
-			else:
-				$error=" Choose any photo !!! ";
-			endif;
-			return $error;
+				
+				if(empty($error)){
+					//generate unique name
+					//ram.jpg 5 user ram
+
+					$file_name =  $dir ."/" . rand(). ".". $ext;
+					move_uploaded_file($_FILES[$name]["tmp_name"], $file_name);
+				}
+			}
+			return array($error,$file_name);
+			//0 , 1
 		}
-
-
 
 }
 
