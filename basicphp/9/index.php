@@ -1,36 +1,23 @@
 <?php 
 	session_start();
 	require_once('connect.php');
-	require_once('usersTrait.php');
-	require_once('users.php');
-	require_once('myFunction.php');
+	require_once('users/usersTrait.php');
+	require_once('users/adminLogin.php');
+	require_once('users/users.php');
+	require_once('controller/myFunction.php');
 	require_once('validate.php');
+	require_once('layouts/app.php');
+	require_once('partials/success.php');
+	
+	if(isset($_SESSION['auth_admin'])){
+		$folder = (isset($_GET['folder'])) ? $_GET['folder'] : '';
+		$file = (isset($_GET['file'])) ? $_GET['file'] : '';
+		$folder_file = $Connect->retrieveFileFromUrl($folder,$file);
+		include($folder_file);
+	}
+	else{
+		header("LOCATION: login.php");
+	}
 
-	// foreach ($myFunction->test() as $item) {
-	// 	echo $item['name'];
-	// }
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CMS</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-</head>
-<body>
-	<div class="container p-4">
-
-		<?php 
-			include('success.php');
-			require('primary.php');
-			$filename = (isset($_GET['file'])) ? $_GET['file'] : '';
-			$file = $Connect->retrieveFileFromUrl($filename);
-			include($file);
-		?>
-	</div>
-</body>
-</html>
+	require_once('layouts/app-footer.php');
+	

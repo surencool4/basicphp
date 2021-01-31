@@ -41,10 +41,6 @@
 	echo "<hr>";
 
 
-//$_REQUEST
-
-	//SELF
-	//Other
 echo '<h1>$_REQUEST</h1>';
 
 ?>

@@ -23,19 +23,19 @@
  		return mysqli_query($this->connect, $sql);
  	}
 
- 	public function retrieveFileFromUrl($filename)
+ 	public function retrieveFileFromUrl($folder,$file)
  	{
  		try {
-	 		if(empty($filename)):
-	 			$inc = "home.php";
+	 		if(empty($folder) || empty($file)):
+	 			$path = "dashboard.php";
 	 		else:
-	 			$inc = "$filename.php";
+	 			$path = "$folder/$file.php";
 	 		endif;
 	 	} catch (Exception $e) {
- 			$inc = "home.php";
+ 			$path = "dashboard.php";
  		}
  		
- 		return $inc;
+ 		return $path;
  	}
 
  	public function fetch($query){

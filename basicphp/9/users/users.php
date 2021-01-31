@@ -3,6 +3,7 @@
   class Users 
   {
     use usersTrait;
+    use adminLogin;
 
     //Truncate tablename
     //Delete all datas and staring with 1

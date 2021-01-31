@@ -1,5 +1,5 @@
 <table class="table table-striped">
-	<h2>User(s) <span class="small float-right"><a class="btn btn-primary" href="?file=create">Create User</a></span></h2>
+	<h2>User(s) <span class="small float-right"><a class="btn btn-primary" href="?folder=users&file=create">Create User</a></span></h2>
 	<thead>
 		<tr>
 			<td>SN</td>
@@ -26,8 +26,8 @@
 			echo "<td>". $user['contact']. "</td>";
 			?>
 			<td style="width:20%;">
-				<a class="btn btn-info btn-small" href="?file=update&id=<?=$user['id']?>">Edit</a>
-				<a class="btn btn-danger btn-small" href="?file=delete&id=<?=$user['id']?>">Delete</a>
+				<a class="btn btn-info btn-small" href="?folder=users&file=update&id=<?=$user['id']?>">Edit</a>
+				<a class="btn btn-danger btn-small" href="?folder=users&file=delete&id=<?=$user['id']?>">Delete</a>
 			</td>
 			<?php
 			echo "</tr>";
